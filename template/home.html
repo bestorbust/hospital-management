@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 80px 0 0; /* Adjusted top margin to accommodate the fixed header */
+            padding: 0;
+            background: url("{{ url_for('static', filename='images/1.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+        }
+        header {
+            background-color: #f5f3f3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #020202;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        header img {
+            height: 50px; /* Adjust the height as needed */
+        }
+        nav ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin-right: 10px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        nav ul li:hover {
+            background-color: #555;
+        }
+        nav a {
+            text-decoration: none;
+            color: #f3efef;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #f5f3f3;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+        .about-us {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 80px; /* Adjust this value to match the header height */
+            margin-bottom: 20px;
+        }
+        .about-us p {
+            color: #333;
+        }
+        .logo-navigation {
+            text-align: center;
+        }
+        .logo-navigation img {
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        .logo-navigation ul {
+            display: flex;
+            justify-content: center;
+        }
+        .logo-navigation ul li {
+            margin-right: 20px;
+        }
+        .logo-navigation a {
+            text-decoration: none;
+            color: white;
+        }
+        .tab {
+            color: white;
+            text-decoration: none;
+        }
+        .tab:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Hospital Logo">
+            <span>Hospital Management System</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#patient">Patients</a></li>
+                <li><a href="#doctor">Doctors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+    <div id="about" class="container about-us">
+        <h2>About Us</h2>
+        <p>
+            We provide the best service all over the country. People choose our hospital because of our well-organized management and also the following advantages:
+        </p>
+        <ul>
+            <li>We have a list of associated doctors.</li>
+            <li>Every department has specialists available.</li>
+            <li>Other facilities within a properly organized system.</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="logo-navigation">
+            <img src="{{ url_for('static', filename='images/plogo.jpg') }}" alt="Patient Logo">
+            <ul>
+                <li><a href="{{ url_for('enter_details') }}" class="tab" style="color:white">Add Patient</a></li>
+                <li><a href="{{ url_for('patients_list') }}" class="tab">Display All Patients</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="doctor" class="container">
+        <div class="logo-navigation">
+            <img src="{{ url_for('static', filename='images/dlogo.jpg') }}" alt="Doctor Logo">
+            <ul>
+                <li><a href="#add-doctor">Add Doctor</a></li><br>
+                <li><a href="#all-doctors">All Doctors</a></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

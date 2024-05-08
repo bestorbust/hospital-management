@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("{{ url_for('static', filename='images/1.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+        }
+        header {
+            background-color: #f5f3f3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #020202;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        header img {
+            height: 50px; /* Adjust the height as needed */
+        }
+        nav ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin-right: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #f5f3f3;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+        .container {
+            max-width: 800px;
+            margin: 80px auto 20px; /* Adjusted top margin to accommodate the fixed header */
+            background-color: #fff;
+            padding: 70px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .update-btn {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Hospital Logo">
+            <span>Hospital Management System</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{url_for('index')}}">About Us</a></li>
+                <li><a href="{{url_for('index')}}">Patients</a></li>
+                <li><a href="{{url_for('index')}}">Doctors</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Patient List</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Condition</th>
+                <th>Admitted</th>
+                <th>Admission Date</th>
+                <th>Discharge Date</th>
+                <th>Actions</th>
+            </tr>
+            {% for patient in patients %}
+                <tr>
+                    <td>{{ patient['id'] }}</td>
+                    <td>{{ patient['name'] }}</td>
+                    <td>{{ patient['age'] }}</td>
+                    <td>{{ patient['gender'] }}</td>
+                    <td>{{ patient['condition'] }}</td>
+                    <td>{{ "Yes" if patient['admitted'] else "No" }}</td>
+                    <td>{{ patient['date'] }}</td>
+                    <td>{{ patient['discharge_date'] }}</td>
+                    <td class="actions">
+                        <a class="btn update-btn" href="/update/{{ patient['id'] }}">Update</a>
+                        <form action="/delete/{{ patient['id'] }}" method="post">
+                            <button type="submit" class="btn">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

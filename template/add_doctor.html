@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Doctor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="number"] {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 80px 0 0; /* Adjusted top margin to accommodate the fixed header */
+            padding: 0;
+            background: url("{{ url_for('static', filename='images/1.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+        }
+        header {
+            background-color: #f5f3f3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #020202;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        header img {
+            height: 50px; /* Adjust the height as needed */
+        }
+        nav ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin-right: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #f5f3f3;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+        .about-us {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 80px; /* Adjust this value to match the header height */
+            margin-bottom: 20px;
+        }
+        .about-us p {
+            color: #333;
+        }
+        .logo-navigation {
+            text-align: center;
+        }
+        .logo-navigation img {
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        .logo-navigation ul {
+            display: flex;
+            justify-content: center;
+        }
+        .logo-navigation ul li {
+            margin-right: 20px;
+        }
+        .logo-navigation a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Hospital Logo">
+            <span>Hospital Management System</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{url_for('index')}}">Home</a></li>
+                <li><a href="{{url_for('index')}}">About Us</a></li>
+                <li><a href="{{url_for('index')}}">Patients</a></li>
+                <li><a href="{{url_for('index')}}">Doctors</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Add Doctor</h1>
+        <form action="{{ url_for('enter_doctor_details') }}" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="specialization">Specialization:</label>
+            <input type="text" id="specialization" name="specialization" required>
+            <label for="consultancy_fee">Consultancy Fee:</label>
+            <input type="number" id="consultancy_fee" name="consultancy_fee" step="0.01" required>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
