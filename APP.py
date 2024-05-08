@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
-app = Flask(__name__)
+#app = Flask(__name__)
 
 def get_db_connection():
     conn = sqlite3.connect('hospital.db')
